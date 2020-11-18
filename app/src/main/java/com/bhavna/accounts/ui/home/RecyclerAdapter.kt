@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bhavna.accounts.R
 import com.bhavna.accounts.api.Sale
 
-class RecyclerAdapter(private val mContext: Context, private val sale: ArrayList<Sale?>?) :
+class RecyclerAdapter(private val mContext: Context?, private val sale: ArrayList<Sale?>?) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
-    public class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tv1: TextView = itemView.findViewById(R.id.textView)
         var tv2: TextView = itemView.findViewById(R.id.textView2)
+        var tv3: TextView = itemView.findViewById(R.id.textView3)
+        var tv4: TextView = itemView.findViewById(R.id.textView4)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,9 +33,17 @@ class RecyclerAdapter(private val mContext: Context, private val sale: ArrayList
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.e("TAG", "onBindViewHolder: " + sale?.get(position)?.getClient(), null)
+        Log.i("TAG", "onBindViewHolder: " + sale?.get(position)?.client?.name, null)
         if (sale != null) {
-            holder.tv1.setText(sale.get(position)?.getClient())
+            val client = sale.get(position)?.client?.name
+            val date1 = sale.get(position)?.date
+            val price = sale.get(position)?.totalPrice?: 0
+            val quantity = sale.get(position)?.quantity?: 0
+
+            holder.tv1.setText(client)
+            holder.tv3.setText(date1)
+            holder.tv2.setText(price.toString())
+            holder.tv4.setText(quantity.toString())
         }
     }
 }

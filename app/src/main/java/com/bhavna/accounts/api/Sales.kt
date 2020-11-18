@@ -3,114 +3,87 @@ package com.bhavna.accounts.api
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-public class Sale {
-
+class Client {
     @SerializedName("_id")
     @Expose
-    private var id: String? = null
+    var id: String? = null
 
-    @SerializedName("client")
+    @SerializedName("name")
     @Expose
-    private var client: String? = null
-
-    @SerializedName("item")
-    @Expose
-    private var item: String? = null
-
-    @SerializedName("quantity")
-    @Expose
-    private var quantity: Int? = null
-
-    @SerializedName("unit")
-    @Expose
-    private var unit: String? = null
+    var name: String? = null
 
     @SerializedName("description")
     @Expose
-    private var description: String? = null
-
-    @SerializedName("totalPrice")
-    @Expose
-    private var totalPrice: Int? = null
+    var description: String? = null
 
     @SerializedName("date")
     @Expose
-    private var date: String? = null
+    var date: String? = null
 
     @SerializedName("__v")
     @Expose
-    private var v: Int? = null
+    var v: Int? = null
 
-    fun getId(): String? {
-        return id;
-    }
+}
 
-    fun setId(id: String) {
-        this.id = id
-    }
+class Item {
+    @SerializedName("_id")
+    @Expose
+    var id: String? = null
 
-    fun getClient(): String? {
-        return client
-    }
+    @SerializedName("title")
+    @Expose
+    var title: String? = null
 
-    fun setClient(client: String) {
-        this.client = client
-    }
+    @SerializedName("description")
+    @Expose
+    var description: String? = null
 
-    fun getItem(): String? {
-        return item
-    }
+    @SerializedName("date")
+    @Expose
+    var date: String? = null
 
-    fun setItem(item: String) {
-        this.item = item;
-    }
+    @SerializedName("__v")
+    @Expose
+    var v: Int? = null
 
-    fun getQuantity(): Int? {
-        return quantity
-    }
+}
 
-    fun setQuantity(quantity: Int) {
-        this.quantity = quantity;
-    }
+class Sale {
+    @SerializedName("_id")
+    @Expose
+    var id: String? = null
 
-    fun getUnit(): String? {
-        return unit;
-    }
+    @SerializedName("client")
+    @Expose
+    var client: Client? = null
 
-    fun setUnit(unit: String) {
-        this.unit = unit
-    }
+    @SerializedName("item")
+    @Expose
+    var item: Item? = null
 
-    fun getDescription(): String? {
-        return description
-    }
+    @SerializedName("quantity")
+    @Expose
+    var quantity: Int? = null
 
-    fun setDescription(description: String) {
-        this.description = description
-    }
+    @SerializedName("unit")
+    @Expose
+    var unit: String? = null
 
-    fun getTotalPrice(): Int? {
-        return totalPrice
-    }
+    @SerializedName("description")
+    @Expose
+    var description: String? = null
 
-    fun setTotalPrice(totalPrice: Int) {
-        this.totalPrice = totalPrice
-    }
+    @SerializedName("totalPrice")
+    @Expose
+    var totalPrice: Int? = null
 
-    fun getDate(): String?{
-        return date
-    }
+    @SerializedName("date")
+    @Expose
+    var date: String? = null
 
-    fun setDate(date: String) {
-        this.date = date
-    }
-
-    fun getV(): Int?{
-        return v
-    }
-
-    fun setV (v: Int) {
-        this.v = v
-    }
+    @SerializedName("__v")
+    @Expose
+    var v: Int? = null
 
 }
