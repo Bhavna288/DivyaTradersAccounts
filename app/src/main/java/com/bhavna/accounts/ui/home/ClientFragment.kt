@@ -25,24 +25,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class ClientFragment(activity: FragmentActivity?) : Fragment() {
+class ClientFragment() : Fragment() {
     private val apiKey = "d7d8d35fa42b4a8d827eb143bce6be1e"
     private val TAG = "ClientFragment"
     var root: View? = null
-    var activity: Activity? = null
-
-
-//    // TODO: Rename and change types of parameters
-//    private var param1: String? = null
-//    private var param2: String? = null
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,8 +51,6 @@ class ClientFragment(activity: FragmentActivity?) : Fragment() {
 
         val call: Call<ArrayList<Sale?>>? = api.getSales(apiKey)
 
-//        var recyclerView = root?.findViewById(R.id.recyclerView) as RecyclerView
-
         if (call != null) {
             call.enqueue(object : Callback<ArrayList<Sale?>> {
                 override fun onFailure(call: Call<ArrayList<Sale?>>, t: Throwable) {
@@ -86,7 +70,7 @@ class ClientFragment(activity: FragmentActivity?) : Fragment() {
 
                     recyclerView.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
-                    var adapter = RecyclerAdapter(getActivity(), sale)
+                    var adapter = RecyclerAdapter(activity, sale)
 
                     recyclerView.adapter = adapter
                 }

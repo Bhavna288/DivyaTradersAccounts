@@ -56,11 +56,10 @@ class RecyclerAdapter(private val activity: FragmentActivity?, private val sale:
             holder.tv4.setText(quantity.toString())
 
             holder.saleItem.setOnClickListener(View.OnClickListener { view ->
-                val fragment = ClientDetails()
                 var fragmentManager: FragmentManager? = activity?.supportFragmentManager
                 val transaction = fragmentManager?.beginTransaction()
                 if (transaction != null) {
-                    transaction.replace(R.layout.fragment_home, fragment)
+                    transaction.replace(R.layout.fragment_client, ClientDetails())
                     transaction.disallowAddToBackStack()
                     transaction.commit()
                 }

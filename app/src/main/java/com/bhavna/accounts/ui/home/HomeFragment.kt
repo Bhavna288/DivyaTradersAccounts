@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = MyViewPagerAdapter(childFragmentManager)
-        adapter.addFragment(ClientFragment(activity), "Clients")
+        adapter.addFragment(ClientFragment(), "Clients")
         adapter.addFragment(ItemFragment(), "Items")
 
         val viewPager = root!!.findViewById<ViewPager>(R.id.viewPager)
