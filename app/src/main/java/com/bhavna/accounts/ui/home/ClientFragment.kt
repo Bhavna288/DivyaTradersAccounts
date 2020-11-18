@@ -1,11 +1,13 @@
 package com.bhavna.accounts.ui.home
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bhavna.accounts.R
@@ -23,10 +25,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class ClientFragment : Fragment() {
+class ClientFragment(activity: FragmentActivity?) : Fragment() {
     private val apiKey = "d7d8d35fa42b4a8d827eb143bce6be1e"
     private val TAG = "ClientFragment"
     var root: View? = null
+    var activity: Activity? = null
+
 
 //    // TODO: Rename and change types of parameters
 //    private var param1: String? = null
@@ -80,9 +84,9 @@ class ClientFragment : Fragment() {
                         Log.i(TAG, "onResponse: " + (sale.size))
                     }
 
-                    recyclerView.layoutManager = LinearLayoutManager(root?.context, RecyclerView.VERTICAL, false)
+                    recyclerView.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
-                    var adapter = RecyclerAdapter(root?.context, sale)
+                    var adapter = RecyclerAdapter(getActivity(), sale)
 
                     recyclerView.adapter = adapter
                 }

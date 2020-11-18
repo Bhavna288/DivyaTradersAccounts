@@ -1,26 +1,16 @@
 package com.bhavna.accounts.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.MarginLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.bhavna.accounts.R
-import com.bhavna.accounts.api.Sale
-import com.bhavna.accounts.api.SalesAPIInterface
 import kotlinx.android.synthetic.main.fragment_home.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeFragment : Fragment() {
 
@@ -48,12 +38,18 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = MyViewPagerAdapter(childFragmentManager)
-        adapter.addFragment(ClientFragment(), "Clients")
+        adapter.addFragment(ClientFragment(activity), "Clients")
         adapter.addFragment(ItemFragment(), "Items")
 
         val viewPager = root!!.findViewById<ViewPager>(R.id.viewPager)
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
+        for (i in 0 until 2) {
+            var tab = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(i)
+            val p = tab.layoutParams as MarginLayoutParams
+            p.setMargins(60, 0, 60, 0)
+            tab.requestLayout()
+        }
     }
 
     class MyViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
