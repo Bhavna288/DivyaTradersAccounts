@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
         for (i in 0 until 2) {
             var tab = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(i)
             val p = tab.layoutParams as MarginLayoutParams
-            p.setMargins(60, 0, 60, 0)
+            p.setMargins(80, 0, 80, 0)
             tab.requestLayout()
         }
     }

@@ -1,7 +1,7 @@
 package com.bhavna.accounts.ui.home
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.content.ContentValues.TAG
 import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,14 +10,15 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.bhavna.accounts.R
 import com.bhavna.accounts.api.Sale
-import java.time.format.DateTimeFormatter
+import com.bhavna.accounts.ui.dashboard.DashboardFragment
 
-class RecyclerAdapter(private val activity: FragmentActivity?, private val sale: ArrayList<Sale?>?) :
+class RecyclerAdapter(private val supportFragmentManager: FragmentManager, private val sale: ArrayList<Sale?>?) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var saleItem: RelativeLayout = itemView.findViewById(R.id.sale_item)
@@ -43,7 +44,7 @@ class RecyclerAdapter(private val activity: FragmentActivity?, private val sale:
     @SuppressLint("ResourceType")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.i("TAG", "onBindViewHolder: " + sale?.get(position)?.client?.name, null)
+//        Log.i("TAG", "onBindViewHolder: " + sale?.get(position)?.client?.name, null)
         if (sale != null) {
             val client = sale.get(position)?.client?.name
             var date1 = sale.get(position)?.date
@@ -55,15 +56,17 @@ class RecyclerAdapter(private val activity: FragmentActivity?, private val sale:
             holder.tv2.setText(price.toString())
             holder.tv4.setText(quantity.toString())
 
-            holder.saleItem.setOnClickListener(View.OnClickListener { view ->
-                var fragmentManager: FragmentManager? = activity?.supportFragmentManager
+            holder.saleItem.setOnClickListener { view ->
+                var fragmentManager: FragmentManager? = supportFragmentManager
                 val transaction = fragmentManager?.beginTransaction()
                 if (transaction != null) {
-                    transaction.replace(R.layout.fragment_client, ClientDetails())
-                    transaction.disallowAddToBackStack()
+                    fragmentManager?.findFragmentByTag("HomeFragment")?.let { transaction.hide(it) }
+                    transaction.add(R.id.nav_framelayout, ClientDetails(), "ClientDetails")
+                    transaction.addToBackStack(null)
+                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     transaction.commit()
                 }
-            })
+            }
         }
     }
 }

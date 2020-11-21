@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     android:id="@+id/sale_item"
     android:clickable="true"
-    android:layout_margin="20dp">
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="18dp"
+    android:background="@drawable/sale_bg">
 
     <TextView
         android:id="@+id/textView"
