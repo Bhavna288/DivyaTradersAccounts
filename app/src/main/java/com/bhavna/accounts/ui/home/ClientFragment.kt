@@ -70,7 +70,7 @@ class ClientFragment() : Fragment() {
 
                     recyclerView.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
-                    var adapter = RecyclerAdapter(activity!!.supportFragmentManager, sale)
+                    var adapter = RecyclerAdapter(activity!!.supportFragmentManager, sale?.distinctBy { it?.client?.id }, sale)
 
                     recyclerView.adapter = adapter
                 }

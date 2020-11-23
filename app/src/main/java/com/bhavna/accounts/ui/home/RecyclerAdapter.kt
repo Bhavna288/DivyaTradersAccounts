@@ -1,24 +1,20 @@
 package com.bhavna.accounts.ui.home
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.bhavna.accounts.R
 import com.bhavna.accounts.api.Sale
-import com.bhavna.accounts.ui.dashboard.DashboardFragment
 
-class RecyclerAdapter(private val supportFragmentManager: FragmentManager, private val sale: ArrayList<Sale?>?) :
+class RecyclerAdapter(private val supportFragmentManager: FragmentManager, private val sale: List<Sale?>?, private val saleAll: List<Sale?>?) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var saleItem: RelativeLayout = itemView.findViewById(R.id.sale_item)
@@ -50,18 +46,19 @@ class RecyclerAdapter(private val supportFragmentManager: FragmentManager, priva
             var date1 = sale.get(position)?.date
             val price = sale.get(position)?.totalPrice?: 0
             val quantity = sale.get(position)?.quantity?: 0
+            val unit = sale.get(position)?.unit?: ""
 
             holder.tv1.setText(client)
             holder.tv3.setText(date1)
-            holder.tv2.setText(price.toString())
-            holder.tv4.setText(quantity.toString())
+            holder.tv2.setText("₹ " + price.toString())
+            holder.tv4.setText(quantity.toString() + " " + unit)
 
             holder.saleItem.setOnClickListener { view ->
                 var fragmentManager: FragmentManager? = supportFragmentManager
                 val transaction = fragmentManager?.beginTransaction()
                 if (transaction != null) {
                     fragmentManager?.findFragmentByTag("HomeFragment")?.let { transaction.hide(it) }
-                    transaction.add(R.id.nav_framelayout, ClientDetails(), "ClientDetails")
+                    transaction.add(R.id.nav_framelayout, ClientDetails(sale.get(position)?.client?.id, saleAll), "ClientDetails")
                     transaction.addToBackStack(null)
                     transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     transaction.commit()

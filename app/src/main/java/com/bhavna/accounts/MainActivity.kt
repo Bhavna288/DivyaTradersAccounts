@@ -1,25 +1,18 @@
 package com.bhavna.accounts
 
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.SpinnerAdapter
-import android.widget.Toolbar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NavUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import com.bhavna.accounts.`interface`.BackPressed
 import com.bhavna.accounts.ui.dashboard.DashboardFragment
+import com.bhavna.accounts.ui.home.ClientDetails
 import com.bhavna.accounts.ui.home.HomeFragment
 import com.bhavna.accounts.ui.notifications.NotificationsFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -65,4 +58,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        val currentFragment = supportFragmentManager.findFragmentByTag("ClientDetails")
+        if (currentFragment != null && currentFragment.isVisible()) {
+            // add your code here
+            (currentFragment as BackPressed).onBackPressed()
+        }
+        super.onBackPressed()
+    }
 }

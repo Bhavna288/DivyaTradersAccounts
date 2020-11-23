@@ -78,6 +78,10 @@ class Sale {
     @Expose
     var totalPrice: Int? = null
 
+    @SerializedName("remainingBalance")
+    @Expose
+    var remainingBalance: Int? = null
+
     @SerializedName("date")
     @Expose
     var date: String? = null

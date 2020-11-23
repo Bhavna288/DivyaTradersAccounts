@@ -19,7 +19,7 @@
         android:layout_alignParentBottom="false"
         android:fontFamily="@font/istok_web"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:layout_alignStart="@id/textView2" />
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:fontFamily="@font/istok_web"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPink"
         android:textSize="18sp" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_alignParentLeft="true"
         android:fontFamily="@font/istok_web"
         android:textColor="@color/gray"
-        android:textSize="12sp" />
+        android:textSize="13sp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -52,5 +52,5 @@
         android:layout_alignParentRight="true"
         android:fontFamily="@font/istok_web"
         android:textColor="@color/black"
-        android:textSize="12sp" />
+        android:textSize="13sp" />
 </RelativeLayout>
