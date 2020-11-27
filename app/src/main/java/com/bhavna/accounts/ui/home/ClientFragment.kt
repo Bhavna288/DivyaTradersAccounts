@@ -1,13 +1,11 @@
 package com.bhavna.accounts.ui.home
 
-import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bhavna.accounts.R
@@ -70,7 +68,7 @@ class ClientFragment() : Fragment() {
 
                     recyclerView.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
-                    var adapter = RecyclerAdapter(activity!!.supportFragmentManager, sale?.distinctBy { it?.client?.id }, sale)
+                    var adapter = RecyclerClientAdapter(activity!!.supportFragmentManager, sale?.distinctBy { it?.client?.id }, sale)
 
                     recyclerView.adapter = adapter
                 }

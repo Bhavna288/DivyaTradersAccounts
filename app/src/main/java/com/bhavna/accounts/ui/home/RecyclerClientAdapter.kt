@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bhavna.accounts.R
 import com.bhavna.accounts.api.Sale
 
-class RecyclerAdapter(private val supportFragmentManager: FragmentManager, private val sale: List<Sale?>?, private val saleAll: List<Sale?>?) :
-    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerClientAdapter(private val supportFragmentManager: FragmentManager, private val sale: List<Sale?>?, private val saleAll: List<Sale?>?) :
+    RecyclerView.Adapter<RecyclerClientAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var saleItem: RelativeLayout = itemView.findViewById(R.id.sale_item)
         var tv1: TextView = itemView.findViewById(R.id.textView)
